@@ -1,9 +1,9 @@
-## Included Examples
+# Thorlabs PAX Polarimeter communication using Python
+In this folder you can find sample codes show how you can control a Thorlabs PAX Polarimeter in Python. You can control the PAX with the
+Thorlabs PAX driver or directly with SCPI commands.
 
-### Thorlabs PAX1000 Polarimeter Open and Read
-This sample code shows how you can control a Thorlabs PAX1000 Polarimeter in Python.
-It uses the ctypes library to load the DLL file for these polarimeters. This library needs to be installed separately on the computer.
+There are three sub folders:
 
-Please note that the code connects to the first available PAX1000 device. If you have more than one PAX1000 connected, you need to change the index number in this line:
-
-lib.TLPAX_getRsrcName(instrumentHandle, 0, resource)
+ - **TLPAX dll:** Code samples using the Thorlabs PAX Polarimeter driver dll named TLPAX. This is the more convenient method. For closer info read [Readme](TLPAX_dll).
+ - **scpi:** Code examples using directly text based [SCPI](https://de.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments) commands. This low level method allows direct access to the device functionality. For closer info read [Readme](scpi).
+ 

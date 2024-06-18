@@ -1,41 +1,19 @@
-# JSON Parameter Export and Import Example
-This command line sample demonstrates how to export and import the Power Meter runtime parameters
-in [JSON]() format. 
+# PAX1000 Get Latest measurement mode 
+This command line sample demonstrates how to initialize, start and measure data in text based Get Latest measurement mode for Thorlabs Polarimeters. 
 
 # Details 
-
-The parameter export and import functionality allows to save and restore a set of paramters for example for a certain expermiment.
+The text based mode allows querying polarization measurement data at normal or slow motor speeds. The speed limit depends on the measurement mode. The Get Latest mode returns the recently added measurement result out of the device internal queue. The mode does not remove the element from the device internal queue. So if you query faster than the PAX measurement rate you will receive the same sample multiple times. You can use the evolution count or timestampe variable to detect new sample data. If you face problems with the speed you should switch to the binary based FIFO measurement mode. 
 
 ## Limitations
-Please do not use this to modify the parameters. Moving parameter sets between differente Power Meters is not supported but you 
-can use this feature to clone a device configuration within one Meter family. You can also only import parameters within 
-one sensor family. So for example from one photodiode to another photodiode but not from photodiode to pyroelectric sensor.
+The PAX1000 firmware does not support all measurement modes at 200 Hz motor full speed. Especially the half turn FFT modes are limited. If motor speed is to fast you always have a loss of data and the "Out of Sync" status bit is set. For speed limits per mode refer to the sample code. 
 
+### National Instruments :tm: Visa
+If you want to control the Polarimeter on Windows or Linux, with pyvisa library or with SCPI commands within your CVI or LabView application, you have to install National Instruments :tm: Visa Runtime. The library gets also installed along with the Thorlabs PAX software. It might be installed by NI LabView or NI CVI as well.
 
-# Example Output
-
+To use the NI Visa library in python you have to install pyvisa. 
 ```
-Found devices
-[AnyVisa Device(USB0::0x1313::0x80B4::Jonny1::INSTR)]
-
-Thorlabs,PM62,M00000002,1.0.0.3
-Export JSON out of meter
-{"pm":{"name":"PM62","ser":"M00000002","calD":"05-Feb-2024","adap":1},"sens":[{"name":"S130C","ser": "11071126","calD":"4-AUG-2011","ch": 0,"type":1,"aRan":false,"gIdx":8,"wavel":400.00,"resp":5.314501e-03,"atten":0.000000e+00,"bArea":0.708822,"wUnit":0,"wMin":"-inf","wMax":"inf", "mode": 2, "bandw":0, "pFilt":1, "pThre":10}]}
-0,"No error"
-
-Import JSON into meter again
-SYST:PARA:IMPO:JSON 1,'{"pm":{"name":"PM62","ser":"Jonny1","calD":"05-Feb-2024","adap":1},"sens":[{"name":"S130C","ser": "1'
-SYST:PARA:IMPO:JSON 1,'1071126","calD":"4-AUG-2011","ch": 0,"type":1,"aRan":false,"gIdx":8,"wavel":400.00,"resp":5.314501e-'
-SYST:PARA:IMPO:JSON 1,'03,"atten":0.000000e+00,"bArea":0.708822,"wUnit":0,"wMin":"-inf","wMax":"inf", "mode": 2, "bandw":0,'
-SYST:PARA:IMPO:JSON 1,' "pFilt":1, "pThre":10}]}'
-0,"No error"
+python -m pip install pyvisa
 ```
 
-## anyvisa python Library
-You can download anyvisa library wheel in this Github repository. Please refer to this [README](../Readme.md) how to install it. 
-
-## Supported Meters
-- PM103
-- PM103E
-- PM5020
-- PM6x
+## Supported Thorlabs Polarimeters
+- PAX1000

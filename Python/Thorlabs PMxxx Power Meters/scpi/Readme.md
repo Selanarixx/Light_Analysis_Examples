@@ -29,6 +29,10 @@ Minimal template script ```PMxxx_SCPI_SearchAnyvisa.py``` to run instrument sear
 ### Open Pyvsia
 Minimal template script ```PMxxx_SCPI_pyvisa.py``` to to open a known instrument resource using pyvisa library.
 
+### Raw Ethernet communication example
+Platform independent example showing how to communicate with Thorlabs Power Meter with raw socket communication.
+For closer details refer to [Readme](ethernetRawSockets).
+
 ## SCPI Command documentation
 For most of the Thorlabs Powermeter there is a detail [SCPI command documentation](commandDocu) in .html file format available. 
 

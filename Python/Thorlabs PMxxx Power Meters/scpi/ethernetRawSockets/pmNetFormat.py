@@ -1,3 +1,15 @@
+"""
+Example Thorlabs Power Meter raw ethernet socket communication
+Example Date of Creation                            2024-08-07
+Example Date of Last Modification on Github         2024-08-07
+Version of Python                                   3.11.2
+Version of the Thorlabs SDK used                    none
+==================
+This examples shows how to communicate with a Thorlabs ethernet capable
+Power Meter using raw python socket communication. The sample implements
+the binary framing protocol to transfer SCPI request and response data
+as payload.
+"""
 import struct
 import socket
 
